@@ -1,9 +1,6 @@
 package com.example;
 
-import com.example.jpa.Node;
-import com.example.jpa.NodeRepository;
-import com.example.jpa.Trail;
-import com.example.jpa.TrailRepository;
+import com.example.jpa.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
@@ -26,7 +23,9 @@ public class PocUndoApplication extends SpringBootServletInitializer {
     @Bean
     CommandLineRunner runner(
             NodeRepository nr,
-            TrailRepository tr
+            TrailRepository tr,
+            NodeBkpRepository nbr,
+            TrailBkpRepository tbr
     ) {
         return args -> {
             Arrays.asList("node1,node2,node3,node4,node5,node6".split(",")).forEach(n -> nr.save(new Node(n)));
@@ -34,6 +33,9 @@ public class PocUndoApplication extends SpringBootServletInitializer {
 
             Arrays.asList("trail1,trail2,trail3,trail4,trail5,trail6".split(",")).forEach(n -> tr.save(new Trail(n)));
             tr.findAll().forEach(System.out::println);
+
+            nbr.findAll().forEach(System.out::println);
+            tbr.findAll().forEach(System.out::println);
         };
     }
 }
