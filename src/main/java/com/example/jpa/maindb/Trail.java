@@ -1,4 +1,4 @@
-package com.example.jpa;
+package com.example.jpa.maindb;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,18 +8,17 @@ import javax.persistence.Id;
  * Created by icttb0 on 20/01/2017.
  */
 @Entity
-public class Node {
-
+public class Trail {
     @Id
     @GeneratedValue
     private Long id;
 
     private String name;
 
-    public Node() {
+    public Trail() {
     }
 
-    public Node(String name) {
+    public Trail(String name) {
         this.name = name;
     }
 
@@ -41,7 +40,7 @@ public class Node {
 
     @Override
     public String toString() {
-        return "Node{" +
+        return "Trail{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 '}';

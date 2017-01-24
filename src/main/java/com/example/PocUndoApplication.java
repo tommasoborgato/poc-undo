@@ -1,13 +1,22 @@
 package com.example;
 
-import com.example.jpa.*;
+import com.example.jpa.maindb.Node;
+import com.example.jpa.maindb.NodeRepository;
+import com.example.jpa.maindb.Trail;
+import com.example.jpa.maindb.TrailRepository;
+import com.example.jpa.undodb.NodeBkpRepository;
+import com.example.jpa.undodb.TrailBkpRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceBuilder;
 import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.web.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
+import org.springframework.context.annotation.Primary;
 
+import javax.sql.DataSource;
 import java.util.Arrays;
 
 @SpringBootApplication

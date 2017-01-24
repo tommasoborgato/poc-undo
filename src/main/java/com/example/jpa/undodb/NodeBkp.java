@@ -1,4 +1,6 @@
-package com.example.jpa;
+package com.example.jpa.undodb;
+
+import com.example.jpa.maindb.Node;
 
 import javax.persistence.Entity;
 
@@ -6,11 +8,11 @@ import javax.persistence.Entity;
  * Created by icttb0 on 20/01/2017.
  */
 @Entity
-public class TrailBkp extends Trail {
+public class NodeBkp extends Node {
 
     private CRUD crud;
 
-    public TrailBkp() {
+    public NodeBkp() {
     }
 
     public CRUD getCrud() {
@@ -23,7 +25,7 @@ public class TrailBkp extends Trail {
 
     @Override
     public String toString() {
-        return "TrailBkp{" +
+        return "NodeBkp{" +
                 "crud=" + crud +
                 '}';
     }

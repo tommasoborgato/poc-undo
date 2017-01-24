@@ -1,8 +1,9 @@
 package com.example;
 
-import com.example.jpa.*;
+import com.example.jpa.maindb.Node;
+import com.example.jpa.undodb.NodeBkpRepository;
+import com.example.jpa.undodb.TrailBkpRepository;
 import org.aspectj.lang.JoinPoint;
-import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.dozer.DozerBeanMapper;
@@ -68,6 +69,12 @@ public class MyAspect {
         }
     }
 
+    @Before("execution(* javax.persistence.EntityManager.find(..))")
+    private void logNodeFind(JoinPoint joinPoint){
+        System.out.println("=================== " + joinPoint.getSignature() + " ============================");
+
+    }
+
     @Before("execution(* javax.persistence.EntityManager.remove(..))")
     private void logNodeRemove(JoinPoint joinPoint){
         System.out.println("=================== " + joinPoint.getSignature() + " ============================");
@@ -75,7 +82,7 @@ public class MyAspect {
     }
 
 /*
-    @Before("execution(* com.example.jpa.NodeRepository.*save*(..))")
+    @Before("execution(* com.example.jpa.maindb.NodeRepository.*save*(..))")
     private void logNodeSaveBefore(JoinPoint joinPoint){
         System.out.println("=================== MyAspect.logNodeSave " + joinPoint.getSignature() + " ============================");
         for (Object node : joinPoint.getArgs()) {
@@ -93,7 +100,7 @@ public class MyAspect {
 */
 
 /*
-    @After("execution(* com.example.jpa.NodeRepository.*save*(..))")
+    @After("execution(* com.example.jpa.maindb.NodeRepository.*save*(..))")
     private void logNodeSaveAfter(JoinPoint joinPoint){
         System.out.println("=================== MyAspect.logNodeSave " + joinPoint.getSignature() + " ============================");
         for (Object node : joinPoint.getArgs()) {
@@ -111,7 +118,7 @@ public class MyAspect {
 */
 
 /*
-    @Before("execution(* com.example.jpa.NodeRepository.*delete*(..))")
+    @Before("execution(* com.example.jpa.maindb.NodeRepository.*delete*(..))")
     private void logNodeDelete(JoinPoint joinPoint){
         System.out.println("=================== MyAspect.logNodeDelete " + joinPoint.getSignature() + " ============================");
         for (Object node : joinPoint.getArgs()) {
@@ -123,7 +130,7 @@ public class MyAspect {
         }
     }
 
-    @Before("execution(* com.example.jpa.TrailRepository.*save*(..))")
+    @Before("execution(* com.example.jpa.maindb.TrailRepository.*save*(..))")
     private void logTrailSave(JoinPoint joinPoint){
         System.out.println("=================== MyAspect.logTrailSave " + joinPoint.getSignature() + " ============================");
         for (Object trail : joinPoint.getArgs()) {
@@ -135,7 +142,7 @@ public class MyAspect {
         }
     }
 
-    @Before("execution(* com.example.jpa.TrailRepository.*delete*(..))")
+    @Before("execution(* com.example.jpa.maindb.TrailRepository.*delete*(..))")
     private void logTrailDelete(JoinPoint joinPoint){
         System.out.println("=================== MyAspect.logTrailDelete " + joinPoint.getSignature() + " ============================");
         for (Object trail : joinPoint.getArgs()) {
